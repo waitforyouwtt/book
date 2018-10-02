@@ -4,8 +4,5 @@ spring:
         url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
         username: root
         password: root
-      jpa:
-        hibernate:
-          ddl-auto: create #第一次建表 create 后面用update
-        show-sql: true
+
 
