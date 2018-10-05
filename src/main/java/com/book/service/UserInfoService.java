@@ -1,6 +1,7 @@
 package com.book.service;
 
 import com.book.entity.UserInfo;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface UserInfoService {
     void batchInsert(List<UserInfo> userInfoList);
 
     void addUserInfo(UserInfo userInfo);
+
+    Integer importExcel(MultipartFile myFile);
 }

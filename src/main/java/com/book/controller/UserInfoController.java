@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,4 +68,23 @@ public class UserInfoController {
         model.addAttribute("staticResourceDomain", staticResourceDomain);
        return "save";
     }
+
+
+    @RequestMapping("/toExcel")
+    public  String toExcel(Model model) {
+        model.addAttribute("staticResourceDomain", staticResourceDomain);
+        return "excel";
+    }
+
+    @RequestMapping("/importExcel")
+    public  String importExcel(@RequestParam("myfile")MultipartFile myFile) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Integer nums = infoService.importExcel(myFile);
+        modelAndView.addObject("msg","导入数成功");
+        return "success";
+    }
+
+
+
 }
