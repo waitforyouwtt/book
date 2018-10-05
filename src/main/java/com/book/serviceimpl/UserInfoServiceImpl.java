@@ -6,7 +6,7 @@ import com.book.dao.UserInfoDao;
 import com.book.entity.Tbagent;
 import com.book.entity.UserInfo;
 import com.book.enums.ResultEnum;
-import com.book.exception.LianjiaException;
+import com.book.exception.GlobalException;
 import com.book.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,14 +87,14 @@ public class UserInfoServiceImpl implements UserInfoService {
             }
         } else {
             // 文件不是Excel文件
-            throw new LianjiaException(ResultEnum.FILE_IS_NOT_EXCEL);
+            throw new GlobalException(ResultEnum.FILE_IS_NOT_EXCEL);
         }
         Sheet sheet = workbook.getSheet("sheet1");
         int rows = sheet.getLastRowNum();
         logger.info("【rows】{}", rows);
         if (rows == 0) {
             // 数据为空 请填写数据
-            throw new LianjiaException(ResultEnum.DATA_IS_NULL);
+            throw new GlobalException(ResultEnum.DATA_IS_NULL);
         }
         long startTime = System.currentTimeMillis();
 
