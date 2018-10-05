@@ -168,9 +168,9 @@ public class UserInfoServiceImpl implements UserInfoService {
                 //判断工号是否重复
                 int newNum=i+1;
                 //如果Map集合中包含指定的键名，则返回true；否则返回false。
-                if(mapWorkId.containsKey(tbagent.getJob_number())){
+                if(mapWorkId.containsKey(tbagent.getJob_number().toString())){
                     //拿到先前保存的行号
-                    String lineNum=mapWorkId.get(tbagent.getJob_number());
+                    String lineNum=mapWorkId.get(tbagent.getJob_number().toString());
                    logger.info("先前保存的行号lineNum:"+lineNum);
 
                     if(tmapWorkId.containsKey(tbagent.getJob_number())){
@@ -187,7 +187,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                 }
                 //把i行的第column列的值与行号保存到map中
                 mapWorkId.put(tbagent.getJob_number().toString(), newNum+"");
-                //System.out.println(JSON.toJSON(tbagent));
+               logger.info("得到的数据："+JSON.toJSON(tbagent));
                 //tbagentMapper.insert(tbagent);
                 tbagents.add(tbagent);
             }
