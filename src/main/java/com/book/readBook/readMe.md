@@ -36,3 +36,9 @@
 2. 新建 Feat_xxx 分支
 3. 提交代码
 4. 新建 Pull Request
+
+
+####QuartZ
+1. 例如：0 30 01 *  * ？      表示为：每天的凌晨1点三十分执行定时任务。
+2. 定义时间：https://blog.csdn.net/qq_35781178/article/details/81265167
+
