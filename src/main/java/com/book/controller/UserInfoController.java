@@ -1,12 +1,10 @@
 package com.book.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.book.aop.CheckToken;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.UserInfoService;
 import com.book.utils.ConstantUtils;
-import com.book.utils.JsonView;
 import com.book.utils.RedisToken;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -20,13 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: 一点点
