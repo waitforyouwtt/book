@@ -1,10 +1,13 @@
 package com.book.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.book.aop.CheckToken;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.UserInfoService;
+import com.book.utils.ConstantUtils;
 import com.book.utils.JsonView;
+import com.book.utils.RedisToken;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -42,41 +45,46 @@ public class UserInfoController {
     @Autowired
     UserInfoService infoService;
 
+    @Autowired
+    private RedisToken redisToken;
+
     @Value("${static.resources.domain}")
     private String staticResourceDomain;
 
-    @PostMapping("/userInfoList")
+    @RequestMapping(value = "/userInfoList",method = RequestMethod.GET)
     @ApiOperation(value = "获取用户集合",notes = "根据url的参数获取信息")
-    public List<UserInfo> userInfoList(){
-
+    public String userInfoList(Model model){
         List<UserInfo> userInfos = userInfoMapper.findAll();
-
-        return userInfos;
+        model.addAttribute("userInfos",userInfos);
+        return "userInfoList";
     }
    @RequestMapping(value = "/save",method = RequestMethod.POST,produces="application/json; utf-8")
     @ApiOperation(value = "添加用户信息",notes = "根据url的参数添加用户信息")
     @ApiImplicitParams(
             @ApiImplicitParam(name = "userName",value = "用户实体",required = false,dataType = "UserInfo")
     )
+   @CheckToken(type = ConstantUtils.EXTAPIHEAD)
     public String save(UserInfo userInfo,Model model){
-        infoService.addUserInfo(userInfo);
-        return "success";
+        //infoService.addUserInfo(userInfo);
+       userInfoMapper.save(userInfo);
+       return "success";
     }
-
-    @RequestMapping("/test")
+     @ApiOperation(value = "前往注册页面")
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
     public  String test(Model model) {
         model.addAttribute("staticResourceDomain", staticResourceDomain);
+        model.addAttribute("token",redisToken.getToken());
        return "save";
     }
 
-
-    @RequestMapping("/toExcel")
+    @ApiOperation(value = "前往导入excel页面")
+    @RequestMapping(value = "/toExcel",method = RequestMethod.POST)
     public  String toExcel(Model model) {
         model.addAttribute("staticResourceDomain", staticResourceDomain);
         return "excel";
     }
-
-    @RequestMapping("/importExcel")
+    @ApiOperation(value = "导入excel 动作")
+    @RequestMapping(value = "/importExcel",method = RequestMethod.POST)
     public  String importExcel(@RequestParam("myfile")MultipartFile myFile) {
         ModelAndView modelAndView = new ModelAndView();
 

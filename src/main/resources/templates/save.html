@@ -10,11 +10,27 @@
 
 
 <body>
+
 <form id="form" method="post" action="/mvc/save">
-<fieldset>
+    <input type="hidden" th:value="${token}" id="token" name="token" data-th-if="${not #lists.isEmpty(token)}" readonly="readonly"/>
+    <fieldset>
     <legend>添加用户信息：</legend>
+    <label>用户名：</label>
     <input type="text" name="userName" id="userName" placeholder="请输入用户姓名" aria-label="姓名"/>
+    <label>密码：</label>
     <input type="password" name="password" id="password" placeholder="请输入用户密码" aria-label="密码" />
+    <label>性别：</label>
+    <input type="radio" name="sex"  value="男" checked />男
+    <input type="radio" name="sex"  value="女" />女
+    <label>生日：</label>
+    <input type="date"  name="birthday">
+    <label>地址：</label>
+    <input type="text"  name="address">
+    <label>状态：</label>
+    <select name="deleteFlag">
+        <option value="true">启用</option>
+        <option value="false">禁用</option>
+    </select>
     <input type="submit" name="save" id="save" value="保存"/>
 </fieldset>
 </form>
