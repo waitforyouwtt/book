@@ -65,8 +65,8 @@ public class UserInfoController {
     )
    @CheckToken(type = ConstantUtils.EXTAPIHEAD)
     public String save(UserInfo userInfo,Model model){
-        //infoService.addUserInfo(userInfo);
-       userInfoMapper.save(userInfo);
+        infoService.addUserInfo(userInfo);
+       //userInfoMapper.save(userInfo);
        return "success";
     }
      @ApiOperation(value = "前往注册页面")
