@@ -11,6 +11,6 @@ public class BookTask {
     private long count =0 ;
     @Scheduled(fixedRate = 1000)
     public void taskA(){
-        System.out.println("当前时间："+System.currentTimeMillis()+"\n执行次数："+count++);
+        //System.out.println("当前时间："+System.currentTimeMillis()+"\n执行次数："+count++);
     }
 }

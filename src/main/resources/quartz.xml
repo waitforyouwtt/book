@@ -6,46 +6,46 @@
                           http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="false">
 
     <!--数据源-->
-    <bean id="quartzDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+   <!-- <bean id="quartzDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/quartz?useSSL =false"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
-    </bean>
+    </bean>-->
     <!--触发器-->
-    <bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+   <!-- <bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
-            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">-->
                 <!--开启定时任务持久化-->
-                <property name="Durability" value="true"/>
+              <!--  <property name="Durability" value="true"/>-->
                 <!--定时任务地址-->
-                <property name="jobClass" value="com.book.task.TaskJobs"/>
-            </bean>
-        </property>
+               <!-- <property name="jobClass" value="com.book.task.TaskJobs"/>-->
+          <!--  </bean>
+        </property>-->
         <!--cron表达式-->
-        <property name="cronExpression">
+        <!--<property name="cronExpression">
             <value>0/10 * * * * ?</value>
-        </property>
-    </bean>
-
+        </property>-->
+   <!-- </bean>
+-->
     <!--调度工厂-->
-    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <!--  <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
         <!--使触发器生效-->
-        <property name="triggers">
+       <!-- <property name="triggers">
             <list>
                 <ref bean="trigger"/>
             </list>
-        </property>
+        </property>-->
         <!--指定quartz配置文件地址-->
-        <property name="configLocation" value="classpath:quartz.properties"/>
+        <!--<property name="configLocation" value="classpath:quartz.properties"/>-->
         <!--启动时延期3秒开始任务-->
-        <property name="startupDelay" value="3"/>
+        <!--<property name="startupDelay" value="3"/>-->
         <!--使数据源生效-->
-        <property name="dataSource" ref="quartzDataSource"/>
+      <!--  <property name="dataSource" ref="quartzDataSource"/>-->
         <!--自动注入配置生效-->
-        <property name="jobFactory">
+       <!-- <property name="jobFactory">
             <bean class="com.book.task.AutoWirtingSpringBeanJobFactory"/>
-        </property>
-    </bean>
-
+        </property>-->
+   <!-- </bean>
+-->
 </beans>

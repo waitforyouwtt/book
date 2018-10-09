@@ -66,7 +66,7 @@ public class UserInfoController {
     public  String test(Model model) {
         model.addAttribute("staticResourceDomain", staticResourceDomain);
         model.addAttribute("token",redisToken.getToken());
-       return "save";
+       return "register";
     }
 
     @ApiOperation(value = "前往导入excel页面")
@@ -83,6 +83,11 @@ public class UserInfoController {
         Integer nums = infoService.importExcel(myFile);
         modelAndView.addObject("msg","导入数成功");
         return "success";
+    }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
     }
 
 
