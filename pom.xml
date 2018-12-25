@@ -125,6 +125,50 @@
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.jumpmind.symmetric/symmetric-csv -->
+		<dependency>
+			<groupId>org.jumpmind.symmetric</groupId>
+			<artifactId>symmetric-csv</artifactId>
+			<version>3.5.19</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/tech.tablesaw/tablesaw-core -->
+	<!--	<dependency>
+			<groupId>tech.tablesaw</groupId>
+			<artifactId>tablesaw-core</artifactId>
+			<version>0.30.1</version>
+		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<!--<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>-->
+
+
+
 	</dependencies>
 
 	<build>
