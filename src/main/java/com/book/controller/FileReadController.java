@@ -1,5 +1,8 @@
 package com.book.controller;
 
+import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.excel.metadata.Sheet;
+import com.book.entity.BatchParams;
 import com.book.entity.UserInfo;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -29,7 +32,7 @@ public class FileReadController {
     public static final String LINE_ENDING = "\n";
 
     @RequestMapping(value = "/exclImport",method = RequestMethod.POST)
-    public String importExcl(@RequestParam("file") MultipartFile excl, HttpServletRequest request) {
+    public String importExcel1(@RequestParam("file") MultipartFile excl, HttpServletRequest request) {
 
         if(excl.isEmpty()){
           throw new IllegalArgumentException("文件不存在!");
@@ -59,6 +62,28 @@ public class FileReadController {
         }
 
         return null;
+    }
+
+    @RequestMapping(value = "/exclImport2",method = RequestMethod.POST)
+    public String importExcel(@RequestParam("file") MultipartFile excl, HttpServletRequest request) {
+
+        if(excl.isEmpty()){
+            throw new IllegalArgumentException("文件不存在!");
+        }
+
+        try ( InputStream is = excl.getInputStream()){
+            // 解析每行结果在listener中处理
+          //  List<Object> data = EasyExcelFactory.read(new BufferedInputStream(is), new Sheet(1, 1));
+            List<Object> data2 = EasyExcelFactory.read(new BufferedInputStream(is), new Sheet(1, 1, BatchParams.class));
+
+
+            logger.info("得到的数据是{}",data2);
+
+        } catch (Exception e) {
+           logger.info("异常了{}",e);
+           return "error";
+        }
+        return "success";
     }
 
 }
