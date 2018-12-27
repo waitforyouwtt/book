@@ -7,6 +7,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +20,8 @@ import java.util.List;
  * @time 15:54
  */
 public class ExcelUtil {
+
+    private static Logger log = LoggerFactory.getLogger(ExcelUtil.class);
     //读取文件的方法
     /**
      * 获取解析文件行数据
@@ -42,6 +47,7 @@ public class ExcelUtil {
             }
             return list;
         } catch (Exception e) {
+            log.info("错误信息{}",e);
             throw new RuntimeException("请先解密，再上传文件。");
         }
     }
