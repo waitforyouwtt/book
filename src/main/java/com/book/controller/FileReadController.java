@@ -3,6 +3,7 @@ package com.book.controller;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.metadata.Sheet;
 import com.book.entity.BatchParams;
+import com.book.entity.BatchReductionParams;
 import com.book.entity.UserInfo;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -76,8 +77,16 @@ public class FileReadController {
           //  List<Object> data = EasyExcelFactory.read(new BufferedInputStream(is), new Sheet(1, 1));
             List<Object> data2 = EasyExcelFactory.read(new BufferedInputStream(is), new Sheet(1, 1, BatchParams.class));
 
+            List<BatchReductionParams> batchReductionParams = new ArrayList<>();
 
-            logger.info("得到的数据是{}",data2);
+            for (Object o: data2) {
+                BatchParams batchParams = (BatchParams) o;
+                BatchReductionParams reductionParams = new BatchReductionParams();
+                reductionParams.setLoanId(batchParams.getLoanId());
+                reductionParams.setTerm(batchParams.getTerm());
+                batchReductionParams.add(reductionParams);
+            }
+            logger.info("得到的数据是{}",batchReductionParams.toString());
 
         } catch (Exception e) {
            logger.info("异常了{}",e);
