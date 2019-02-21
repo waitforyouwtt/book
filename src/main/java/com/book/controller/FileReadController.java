@@ -5,13 +5,19 @@ import com.alibaba.excel.metadata.Sheet;
 import com.book.entity.BatchParams;
 import com.book.entity.BatchReductionParams;
 import com.book.entity.UserInfo;
+import com.book.service.UserInfoService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -27,6 +33,12 @@ import java.util.List;
 public class FileReadController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Value("${static.resources.domain}")
+    private String staticResourceDomain;
+
+    @Autowired
+    UserInfoService infoService;
 
     public static final char SEPARATOR = '|';
 
@@ -90,9 +102,30 @@ public class FileReadController {
 
         } catch (Exception e) {
            logger.info("异常了{}",e);
-           return "error";
+           return "failed";
         }
         return "success";
+    }
+
+    @ApiOperation(value = "前往导入excel页面")
+    @RequestMapping(value = "/toExcel",method = RequestMethod.POST)
+    public  String toExcel(Model model) {
+        model.addAttribute("staticResourceDomain", staticResourceDomain);
+        return "excel";
+    }
+    @ApiOperation(value = "导入excel 动作")
+    @RequestMapping(value = "/importExcel",method = RequestMethod.POST)
+    public  String importExcel(@RequestParam("myfile")MultipartFile myFile) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Integer nums = infoService.importExcel(myFile);
+        modelAndView.addObject("msg","导入数成功");
+        return "success";
+    }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
     }
 
 }

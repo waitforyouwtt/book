@@ -38,9 +38,9 @@ public class IndexController {
     @Value("${static.resources.domain}")
     private String staticResourceDomain;
 
-    @RequestMapping("/login")
+    @RequestMapping("/logffffin")
     public String login(){
-        return "login";
+        return "logifffn";
     }
 
     @GetMapping("/layer")

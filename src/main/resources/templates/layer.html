@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>用户登陆</title>
 </head>
-<body>
+<body id="keyLogin">
 <div id="login-div">
-    <form id="login-form">
-        <input type="text" id="userName" placeholder="请输入用户名"/>
-        <input type="password" id="password" placeholder="请输入密码"/>
-        <input type="button" id="login-btn" value="登陆"/>
+    <form id="login-form" action="login">
+        <input type="text" id="userName" name="userName" placeholder="请输入用户名"/>
+        <input type="password" id="passWord" name="passWord" placeholder="请输入密码"/>
+        <input type="submit" id="login-btn" value="登陆" name="login"/>
 
         <input type= "button" id="test" value="test">
         <input type= "button" id="test2" value="test2">
@@ -22,90 +22,6 @@
 
 
 <script src="/js/jquery-1.8.3.js"></script>
-<script src="/layer/layer.js"></script>
+<script src="layer/layer.js"></script>
 
-<script>
-    $(function () {
-        //弹出一个提示层
-        $('#test').on('click', function(){
-            layer.msg('hello');
-        });
-        //弹出一个页面层
-        $('#test2').on('click', function(){
-            layer.open({
-                type: 1,
-                area: ['600px', '360px'],
-                shadeClose: true, //点击遮罩关闭
-                content: '\<\div style="padding:20px;">自定义内容\<\/div>'
-            });
-        });
-        //弹出一个iframe层
-        $('#parentIframe').on('click', function(){
-            layer.open({
-                type: 2,
-                title: 'iframe父子操作',
-                maxmin: true,
-                shadeClose: true, //点击遮罩关闭层
-                area : ['800px' , '520px'],
-                content: 'test/iframe.html'
-            });
-        });
-        //弹出一个loading层
-        $('#test4').on('click', function(){
-            var ii = layer.load();
-            //此处用setTimeout演示ajax的回调
-            setTimeout(function(){
-                layer.close(ii);
-            }, 1000);
-        });
-        //弹出一个tips层
-        $('#test5').on('click', function(){
-            layer.tips('Hello tips!', '#test5');
-        });
-        $("#keyLogin").keydown(function () {
-            if(event.keyCode == 13){
-                $($("input[name='login']")).click();
-            }
-        });
-        //获取验证码
-        $("#changeImg").bind("click", function () {
-            var img = document.getElementById("imgCode");
-            img.src = "/getImage?date=" + new Date();
-        });
-        //登陆
-        $($("input[name='login']")).click(function() {
-            var nickName = $("#nickName").val();
-            var password = $("#password").val();
-            var code= $("#code").val();
-            var url = "/valid-login";
-            $.ajax({
-                url : url,
-                type : 'get',
-                dataType : 'json',
-                data : {
-                    'nickName' : nickName,
-                    'password' : password,
-                    'code':code
-                },
-                success:function(result){
-                    //debugger
-                    var code = result.rCode;
-                    var message = result.message;
-                    if("200" == code){
-                        var url = "/index";
-                        window.location.href=url;
-                    }else if("1000" == code){
-                        layer.msg('hello');
-                    }else if("1001" == code){
-                        layer.msg('hello');
-                    }else if("1002" == code){
-                        layer.msg('hello');
-                    }else if("1003" == code){
-                        layer.msg('hello');
-                    }
-                }
-            });
-        });
-    });
-</script>
 </html>

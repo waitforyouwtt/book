@@ -71,4 +71,8 @@ public class UserInfo implements Serializable{
     @Column(name = "update_time",columnDefinition="DATETIME COMMENT '修改时间'")
     private LocalDate updateTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "login_time",columnDefinition="DATETIME COMMENT '登陆时间'")
+    private LocalDate loginTime;
+
 }

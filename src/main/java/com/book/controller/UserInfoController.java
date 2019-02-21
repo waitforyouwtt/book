@@ -18,7 +18,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: 一点点
@@ -69,26 +74,17 @@ public class UserInfoController {
        return "register";
     }
 
-    @ApiOperation(value = "前往导入excel页面")
-    @RequestMapping(value = "/toExcel",method = RequestMethod.POST)
-    public  String toExcel(Model model) {
-        model.addAttribute("staticResourceDomain", staticResourceDomain);
-        return "excel";
-    }
-    @ApiOperation(value = "导入excel 动作")
-    @RequestMapping(value = "/importExcel",method = RequestMethod.POST)
-    public  String importExcel(@RequestParam("myfile")MultipartFile myFile) {
-        ModelAndView modelAndView = new ModelAndView();
 
-        Integer nums = infoService.importExcel(myFile);
-        modelAndView.addObject("msg","导入数成功");
-        return "success";
+    @GetMapping("/layer")
+    @RequestMapping(value="valid-login",method=RequestMethod.GET)
+    @ResponseBody
+    public Map<String,String> validImage(HttpServletRequest request, HttpSession session, UserInfo userInfo){
+        Map<String,String> result = new HashMap<>(16);
+        //UserInfo userInfo1
+        return result;
     }
 
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
+
 
 
 
