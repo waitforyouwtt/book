@@ -1,6 +1,2 @@
-﻿微服务
-
-微服务分布式架构实践，devtools 热部署，下载即运行【代码完整】
-
-new--project--spring initializr--1.8--next--projectName --cloud discovery--eureka server--finished
+﻿
 

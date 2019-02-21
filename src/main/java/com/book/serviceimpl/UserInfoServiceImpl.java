@@ -7,6 +7,7 @@ import com.book.entity.Tbagent;
 import com.book.entity.UserInfo;
 import com.book.enums.ResultEnum;
 import com.book.exception.GlobalException;
+import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.UserInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,10 +45,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Autowired
     private ExcelDao excelDao;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Override
-    public void addUserInfo(UserInfo userInfo) {
-        userInfoDao.addUserInfo(userInfo);
+    public UserInfo addUserInfo(UserInfo userInfo) {
+       return userInfoMapper.save(userInfo);
     }
 
     @Override

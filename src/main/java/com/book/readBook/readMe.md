@@ -42,3 +42,9 @@
 1. 例如：0 30 01 *  * ？      表示为：每天的凌晨1点三十分执行定时任务。
 2. 定义时间：https://blog.csdn.net/qq_35781178/article/details/81265167
 
+微服务
+
+微服务分布式架构实践，devtools 热部署，下载即运行【代码完整】
+
+new--project--spring initializr--1.8--next--projectName --cloud discovery--eureka server--finished
+

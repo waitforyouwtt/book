@@ -17,7 +17,7 @@ public interface UserInfoService {
      */
     void batchInsert(List<UserInfo> userInfoList);
 
-    void addUserInfo(UserInfo userInfo);
+    UserInfo addUserInfo(UserInfo userInfo);
 
     Integer importExcel(MultipartFile myFile);
 }

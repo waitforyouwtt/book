@@ -25,6 +25,10 @@ spring:
             content:
               enabled: true
               paths: /**
+      jpa:
+        hibernate:
+          ddl-auto: update
+        show-sql: true
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
   type-aliases-package: com.book.entity

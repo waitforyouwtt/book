@@ -3,6 +3,10 @@ package com.book.entity;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author${罗显}
  * @date 2018/12/27
@@ -10,6 +14,10 @@ import com.alibaba.excel.metadata.BaseRowModel;
  */
 public class BatchParams extends BaseRowModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
     @ExcelProperty(index = 0)
     private String loanId;
     @ExcelProperty(index = 1)
