@@ -1,9 +1,10 @@
-package com.book.utils;
+package com.book.tools;
 
 import java.math.BigDecimal;
 
 /**
  * Created by ${罗显} on 2018/10/25
+ * 金额数字转汉字
  */
 public class MoneyToUppercase {
     /**
@@ -21,8 +22,6 @@ public class MoneyToUppercase {
      * 特殊字符：整
      */
     private static final String CN_FULL = "";
-    //因为合同里已经有整,所以先取消
-    //private static final String CN_FULL = "整";
     /**
      * 特殊字符：负
      */
@@ -38,23 +37,18 @@ public class MoneyToUppercase {
 
     /**
      * 把输入的金额转换为汉语中人民币的大写
-     *
-     * @param numberOfMoney
-     *            输入的金额
+     * @param numberOfMoney 输入的金额
      * @return 对应的汉语大写
      */
     public static String number2CNMontrayUnit(BigDecimal numberOfMoney) {
         StringBuffer sb = new StringBuffer();
-        // -1, 0, or 1 as the value of this BigDecimal is negative, zero, or
-        // positive.
         int signum = numberOfMoney.signum();
         // 零元整的情况
         if (signum == 0) {
             return CN_ZEOR_FULL;
         }
         //这里会进行金额的四舍五入
-        long number = numberOfMoney.movePointRight(MONEY_PRECISION)
-                .setScale(0, 4).abs().longValue();
+        long number = numberOfMoney.movePointRight(MONEY_PRECISION).setScale(0, 4).abs().longValue();
         // 得到小数点后两位值
         long scale = number % 100;
         int numUnit = 0;
@@ -119,7 +113,7 @@ public class MoneyToUppercase {
     }
 
     public static void main(String[] args) {
-        double money = 1000000;
+        double money = 100.2000;
         BigDecimal numberOfMoney = new BigDecimal(money);
         String s = MoneyToUppercase.number2CNMontrayUnit(numberOfMoney);
         System.out.println("你输入的金额为：【"+ money +"】   #--# [" +s.toString()+"]");

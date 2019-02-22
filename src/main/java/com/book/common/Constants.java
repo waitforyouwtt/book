@@ -10,5 +10,11 @@ public class Constants {
     public static String YES = "YES";
     public static String NO  = "NO";
 
+    public static String UPPER = "Upper";
+    public static String LOWER = "Lower";
+
+    public static String START_WITH = "start";
+    public static String END_WITH = "end";
+
 
 }

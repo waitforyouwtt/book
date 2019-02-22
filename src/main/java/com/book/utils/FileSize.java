@@ -15,7 +15,8 @@ public class FileSize {
             int length = files.length;
             for (int i = 0; i < length; i++) {
                 File f = files[i];
-                if (f.isDirectory()) {//如果是文件夹就递归调用
+                //如果是文件夹就递归调用
+                if (f.isDirectory()) {
                     totalsize += getFileSize(f);
                 } else {
                     totalsize += f.length();

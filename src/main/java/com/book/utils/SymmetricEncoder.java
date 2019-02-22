@@ -16,6 +16,7 @@ import java.util.Scanner;
  * @author${罗显}
  * @date 2019/2/20
  * @time 17:57
+ * AES 加解密
  */
 public class SymmetricEncoder {
     /*
