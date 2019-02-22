@@ -5,7 +5,7 @@ import com.alibaba.excel.metadata.Sheet;
 import com.book.entity.BatchParams;
 import com.book.entity.BatchReductionParams;
 import com.book.entity.UserInfo;
-import com.book.service.UserInfoService;
+import com.book.service.OtherService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class FileReadController {
     private String staticResourceDomain;
 
     @Autowired
-    UserInfoService infoService;
+    OtherService infoService;
 
     public static final char SEPARATOR = '|';
 
@@ -122,10 +122,4 @@ public class FileReadController {
         modelAndView.addObject("msg","导入数成功");
         return "success";
     }
-
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
-
 }

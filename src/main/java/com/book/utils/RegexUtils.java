@@ -135,7 +135,6 @@ public class RegexUtils {
      * [auto 1]
      * 获取随机字符串 a-z,A-Z,0-9
      * @param length    长度
-     * @return
      */
     public  String autoRandomString(int length) {
         Random random = new Random();
@@ -148,7 +147,6 @@ public class RegexUtils {
     /**
      * 获取随机字符串 a-z,A-Z,0-9 作用同[auto 1]
      * @param length
-     * @return
      */
     public String autoRandomChar(int length) {
         Random random = new Random();
@@ -161,7 +159,6 @@ public class RegexUtils {
     /**
      * 获取随机字符串 a-z
      * @param length    长度
-     * @return
      */
     public String autoLower(int length) {
         Random random = new Random();
@@ -174,7 +171,6 @@ public class RegexUtils {
     /**
      * 获取随机字符串 A-Z
      * @param length    长度
-     * @return
      */
     public String autoUpper(int length) {
         Random random = new Random();
@@ -187,7 +183,6 @@ public class RegexUtils {
     /**
      * 获取随机字符串 0-9
      * @param length    长度
-     * @return
      */
     public String autoNumber(int length) {
         Random random = new Random();
@@ -201,7 +196,6 @@ public class RegexUtils {
      * 获取随机字符串 0-9,a-z,0-9
      * 有两遍0-9，增加数字概率
      * @param length    长度
-     * @return
      */
     public String getLowerLetterNumber(int length) {
         Random random = new Random();
@@ -215,7 +209,6 @@ public class RegexUtils {
      * 获取随机密码，lLength位小写英文+nLength位数字
      * @param lLength   字母长度
      * @param nLength   数字长度
-     * @return
      */
      /*public static String getPasswordSimple(int lLength, int nLength) {
         return autoLower(lLength)+autoNumber(nLength);
@@ -411,12 +404,9 @@ public class RegexUtils {
     /**
      * 判断字段是否超长
      * 字串为空返回fasle, 超过长度{leng}返回ture 反之返回false
-     * @param str
-     * @param leng
-     * @return boolean
      */
     public static boolean isLengOut(String str,int leng) {
-        return StrisNull(str)?false:str.trim().length() > leng ;
+        return strIsNull(str)?false:str.trim().length() > leng ;
     }
     /**
      * 判断字段是否为身份证 符合返回ture
@@ -424,7 +414,7 @@ public class RegexUtils {
      * @return boolean
      */
     public static boolean isIdCard(String str) {
-        if(StrisNull(str)) return false ;
+        if(strIsNull(str)) return false ;
         if(str.trim().length() == 15 || str.trim().length() == 18) {
             return Regular(str,IDCARD);
         }else {
@@ -461,7 +451,7 @@ public class RegexUtils {
      * @param str
      * @return boolean
      */
-    public static synchronized boolean StrisNull(String str) {
+    public static synchronized boolean strIsNull(String str) {
         return null == str || str.trim().length() <= 0 ? true : false ;
     }
     /**
@@ -470,7 +460,7 @@ public class RegexUtils {
      * @return boolean
      */
     public static boolean StrNotNull(String str) {
-        return !StrisNull(str) ;
+        return !strIsNull(str) ;
     }
     /**
      * 判断字段是否为年龄 符合返回ture
@@ -487,7 +477,7 @@ public class RegexUtils {
      * @return boolean
      */
     public static String nulltoStr(String str) {
-        return StrisNull(str)?"":str;
+        return strIsNull(str)?"":str;
     }
     /**
      * 字符串null赋值默认值
@@ -496,7 +486,7 @@ public class RegexUtils {
      * @return String
      */
     public static String nulltoStr(String str,String defaut) {
-        return StrisNull(str)?defaut:str;
+        return strIsNull(str)?defaut:str;
     }
     /**
      * 判断字段是否为Email 符合返回ture
@@ -508,89 +498,68 @@ public class RegexUtils {
     }
     /**
      * 判断是否为电话号码 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isPhone(String str) {
         return Regular(str,PHONE);
     }
     /**
      * 判断是否为手机号码 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isMobile(String str) {
         return Regular(str,MOBILE);
     }
     /**
      * 判断是否为Url 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isUrl(String str) {
         return Regular(str,URL);
     }
     /**
      * 判断字段是否为数字 正负整数 正负浮点数 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isNumber(String str) {
         return Regular(str,DOUBLE);
     }
     /**
      * 判断字段是否为INTEGER 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isInteger(String str) {
         return Regular(str,INTEGER);
     }
     /**
      * 判断字段是否为正整数正则表达式 >=0 符合返回ture
-     * @param str
-     * @return boolean
      */
-    public static boolean isINTEGER_NEGATIVE(String str) {
+    public static boolean isIntegerNegative(String str) {
         return Regular(str,INTEGER_NEGATIVE);
     }
     /**
      * 判断字段是否为负整数正则表达式 <=0 符合返回ture
-     * @param str
-     * @return boolean
      */
-    public static boolean isINTEGER_POSITIVE(String str) {
+    public static boolean isIntegerPositive(String str) {
         return Regular(str,INTEGER_POSITIVE);
     }
     /**
      * 判断字段是否为DOUBLE 符合返回ture
-     * @param str
-     * @return boolean
      */
     public static boolean isDouble(String str) {
         return Regular(str,DOUBLE);
     }
     /**
      * 判断字段是否为正浮点数正则表达式 >=0 符合返回ture
-     * @param str
-     * @return boolean
      */
-    public static boolean isDOUBLE_NEGATIVE(String str) {
+    public static boolean isDoubleNegative(String str) {
         return Regular(str,DOUBLE_NEGATIVE);
     }
     /**
      * 判断字段是否为负浮点数正则表达式 <=0 符合返回ture
-     * @param str
-     * @return boolean
      */
-    public static boolean isDOUBLE_POSITIVE(String str) {
+    public static boolean isDoublePositive(String str) {
         return Regular(str,DOUBLE_POSITIVE);
     }
 
     /**
      * 验证2010-12-10
      * @param str
-     * @return
      */
     public static boolean isDate1(String str) {
         return Regular(str,DATE_FORMAT1);

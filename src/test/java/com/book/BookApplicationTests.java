@@ -2,16 +2,14 @@ package com.book;
 
 import com.book.common.Constants;
 import com.book.entity.UserInfo;
+import com.book.service.OtherService;
 import com.book.service.UserInfoService;
-import jdk.nashorn.internal.ir.IdentNode;
+import com.book.utils.SnowflakeIdWorker;
+import com.book.utils.SymmetricEncoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
@@ -39,20 +37,30 @@ public class BookApplicationTests {
 
 		List<UserInfo> list = new ArrayList<>();
 		list.add(info);
-		userInfoService.batchInsert(list);
+		//userInfoService.batchInsert(list);
 
 	}
 
 	@Test
-	public void saveJPA(){
+	public void saveUser(){
+		SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0,0);
 		UserInfo info = new UserInfo();
-		info.setUserName("张文洁");
+		info.setUserId(String.valueOf(snowflakeIdWorker.nextId()));
+		info.setUserName("范雅轩");
+		info.setNickName("fyx");
+		info.setPassword(SymmetricEncoder.AESEncode("123456","577521"));
 		info.setBirthday(LocalDate.now());
-		info.setDeleteFlag(Constants.YES);
+		info.setDeleteFlag(Constants.NO);
 		info.setAddress("江苏淮安");
-
-		userInfoService.addUserInfo(info);
-
+		userInfoService.save(info);
+	}
+    @Test
+	public void queryUser(){
+		UserInfo userInfo = new UserInfo();
+		userInfo.setNickName("fyx");
+		userInfo.setPassword(SymmetricEncoder.AESEncode("123456","577521"));
+		UserInfo result = userInfoService.login(userInfo);
+		System.out.println("得到的结果："+result);
 	}
 
 }

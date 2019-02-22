@@ -3,7 +3,7 @@ package com.book.controller;
 import com.book.aop.CheckToken;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
-import com.book.service.UserInfoService;
+import com.book.service.OtherService;
 import com.book.utils.ConstantUtils;
 import com.book.utils.RedisToken;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,7 +38,7 @@ public class UserInfoController {
     UserInfoMapper userInfoMapper ;
 
     @Autowired
-    UserInfoService infoService;
+    OtherService infoService;
 
     @Autowired
     private RedisToken redisToken;
@@ -62,7 +60,7 @@ public class UserInfoController {
     )
    @CheckToken(type = ConstantUtils.EXTAPIHEAD)
     public String save(UserInfo userInfo,Model model){
-        infoService.addUserInfo(userInfo);
+       // infoService.addUserInfo(userInfo);
        //userInfoMapper.save(userInfo);
        return "success";
     }
@@ -71,7 +69,7 @@ public class UserInfoController {
     public  String test(Model model) {
         model.addAttribute("staticResourceDomain", staticResourceDomain);
         model.addAttribute("token",redisToken.getToken());
-       return "register";
+       return "add";
     }
 
 

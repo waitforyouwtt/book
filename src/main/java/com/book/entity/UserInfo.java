@@ -32,6 +32,10 @@ public class UserInfo implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Basic
+    @Column(name = "user_Id",columnDefinition="varchar(255) COMMENT '用户Id'")
+    private String userId;
+
     @Pattern(regexp = "^[\u4E00-\u9FA5]+$",message = "用户名格式错误")
     @Basic
     @Column(name = "user_name",columnDefinition="varchar(50) COMMENT '用户名'")
@@ -43,7 +47,7 @@ public class UserInfo implements Serializable{
     private String nickName;
 
     @Basic
-    @Size(min =8,max = 20,message = "密码长度为8-20之间")
+    @Size(min =8,max = 100,message = "密码长度为8-100之间")
     @Column(name = "password",columnDefinition="varchar(100) COMMENT '用户密码'")
     private String password;
 
