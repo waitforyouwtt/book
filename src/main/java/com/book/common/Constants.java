@@ -16,5 +16,8 @@ public class Constants {
     public static String START_WITH = "start";
     public static String END_WITH = "end";
 
+    public static final String CHARSET_ENCODING = "UTF-8";
+    public static final char SEPARATOR = '_';
+
 
 }
