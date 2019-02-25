@@ -122,45 +122,9 @@ public class EncryptUtil {
         return "";
     }
 
-    /**
-     * BASE64加密
-     * @param key
-     * @return
-     * @throws Exception
-     */
-    public static String encryptBASE64(byte[] key) {
-        return filter((new BASE64Encoder()).encodeBuffer(key));
-    }
 
-    /**
-     * BASE64解密
-     * @param key
-     * @return
-     * @throws IOException
-     */
-    public static byte[] decryptBASE64(String key) throws IOException {
-        return (new BASE64Decoder()).decodeBuffer(key);
-    }
 
-    /**
-     * 删除BASE64加密时出现的换行符
-     * <功能详细描述>
-     * @param str
-     * @return
-     * @see [类、类#方法、类#成员]
-     */
-    private static String filter(String str) {
-        String output = null;
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < str.length(); i++) {
-            int asc = str.charAt(i);
-            if (asc != 10 && asc != 13) {
-                sb.append(str.subSequence(i, i + 1));
-            }
-        }
-        output = new String(sb);
-        return output;
-    }
+
 
     /**
      * MD5 加密
