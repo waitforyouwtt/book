@@ -22,11 +22,17 @@ public class Constants {
     public static final char SEPARATOR = '_';
 
     public static final String YYMMDD = "yyMMdd";
-    public static final String YEAR_MONTH_DAY = "yyyy-mm-dd";
-    public static final String YEAR_MONTH_DAY_H_M_S = "yyyy-mm-dd hh:mm:ss";
+    public static final String YEAR_MONTH_DAY = "yyyy-MM-dd";
+    public static final String YEAR_MONTH_DAY_H_M_S = "yyyy-MM-dd hh:mm:ss";
 
     public static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public static final DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    public static final String YEAR = "year";
+    public static final String MONTH = "Month";
+    public static final String DAY = "day";
+    public static final String HOUR = "hour";
+    public static final String MINUTE = "minute";
 
 
 }
