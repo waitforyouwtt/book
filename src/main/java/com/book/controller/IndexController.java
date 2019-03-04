@@ -109,6 +109,15 @@ public class IndexController {
             return result;
         }
     }
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/userInfoList")
+    public String userInfoList(){
+        return "userInfos";
+    }
 
     @GetMapping("/to-register")
     public String toRegister(){
