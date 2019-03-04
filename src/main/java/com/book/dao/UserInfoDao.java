@@ -18,4 +18,6 @@ public interface UserInfoDao {
     void batchInsert(List<UserInfo> userInfoList);
 
     void addUserInfo(UserInfo userInfo);
+
+    List<UserInfo> findAll();
 }

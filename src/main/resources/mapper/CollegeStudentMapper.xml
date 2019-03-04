@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.dao.CollegeStudentDao">
+
+    <select id="findCollegeStudentList" resultType="com.book.entity.CollegeStudentReport" parameterType="com.book.entity.CollegeStudentReport">
+        select
+        id,
+        address,
+        career_direction as  careerDirection ,
+        gender,
+        labour_type as labourType,
+        leisure_activities as leisureActivities,
+        pay_frequency as payFrequency,
+        pay_type as payType,
+        phone,
+        proposal,
+        service_cus_gender as serviceCusGender,
+        service_population as servicePopulation,
+        user_id userId,
+        user_name as userName,
+        work_resource as workResource,
+        create_time as createTime,
+        update_time as updateTime
+        from college_student_report where 1=1
+        <if test="userId != null and userId != '' ">
+            AND user_id = #{userId}
+         </if>
+        <if test="gender !=null and gender != ''">
+            and gender = #{gender}
+        </if>
+    </select>
+
+
+ 
+</mapper>

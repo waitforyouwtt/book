@@ -2,6 +2,8 @@ package com.book.service;
 
 import com.book.entity.UserInfo;
 
+import java.util.List;
+
 /**
  * @author${罗显}
  * @date 2019/2/22
@@ -16,4 +18,6 @@ public interface UserInfoService {
     UserInfo login(UserInfo userInfo);
 
     UserInfo save(UserInfo userInfo);
+
+    List<UserInfo> findAll();
 }

@@ -27,5 +27,9 @@
         </foreach>
     </insert>-->
 
+    <select id="findAll" resultType="com.book.entity.UserInfo">
+        select * from user_info
+    </select>
+
  
 </mapper>
