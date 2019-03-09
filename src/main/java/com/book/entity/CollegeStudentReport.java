@@ -35,7 +35,7 @@ public class CollegeStudentReport  implements Serializable{
     @Column(name = "user_name",columnDefinition="varchar(50) COMMENT '用户名'")
     private String userName;
     @Basic
-    @Column(name = "gender",columnDefinition="varchar(20) COMMENT '性别'")
+    @Column(name = "gender",columnDefinition="varchar(10) COMMENT '性别'")
     private String gender;
     @Basic
     @Column(name = "address",columnDefinition="varchar(50) COMMENT '用户地址'")
@@ -48,28 +48,28 @@ public class CollegeStudentReport  implements Serializable{
     private String proposal;
 
     @Basic
-    @Column(name = "leisure_activities",columnDefinition="varchar(50) COMMENT '业余活动'")
+    @Column(name = "leisure_activities",columnDefinition="varchar(10) COMMENT '业余活动'")
     private String leisureActivities;
     @Basic
-    @Column(name = "work_resource",columnDefinition="varchar(50) COMMENT '兼职途径'")
+    @Column(name = "work_resource",columnDefinition="varchar(10) COMMENT '兼职途径'")
     private String workResource;
     @Basic
-    @Column(name = "labour_type",columnDefinition="varchar(50) COMMENT '兼职类型：01 体力，02 脑力'")
+    @Column(name = "labour_type",columnDefinition="varchar(10) COMMENT '兼职类型：01 体力，02 脑力'")
     private String labourType;
     @Basic
     @Column(name = "career_direction",columnDefinition="varchar(100) COMMENT '职业方向'")
     private String careerDirection;
     @Basic
-    @Column(name = "pay_type",columnDefinition="varchar(50) COMMENT '费用结算方式：01 收入费用，02 固定薪酬，03无所谓'")
+    @Column(name = "pay_type",columnDefinition="varchar(10) COMMENT '费用结算方式：01 收入费用，02 固定薪酬，03无所谓'")
     private String payType;
     @Basic
-    @Column(name = "pay_frequency",columnDefinition="varchar(50) COMMENT '费用结算频率：01 周清，02 月清，03无所谓'")
+    @Column(name = "pay_frequency",columnDefinition="varchar(10) COMMENT '费用结算频率：01 周清，02 月清，03无所谓'")
     private String payFrequency;
     @Basic
-    @Column(name = "service_population",columnDefinition="varchar(50) COMMENT '服务人群：01 小学生，02 中学生，03高中生，04外国人，05无所谓'")
+    @Column(name = "service_population",columnDefinition="varchar(10) COMMENT '服务人群：01 小学生，02 中学生，03高中生，04外国人，05无所谓'")
     private String servicePopulation;
     @Basic
-    @Column(name = "service_cus_gender",columnDefinition="varchar(50) COMMENT '乐意服务人群性别：01 男，02 女，03，无所谓'")
+    @Column(name = "service_cus_gender",columnDefinition="varchar(10) COMMENT '乐意服务人群性别：01 男，02 女，03，无所谓'")
     private String serviceCusGender;
 
     @Column(name = "create_time",columnDefinition="DATETIME COMMENT '创建时间'",insertable=true, updatable=false)

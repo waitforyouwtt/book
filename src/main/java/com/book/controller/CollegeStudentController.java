@@ -53,15 +53,15 @@ public class CollegeStudentController {
     @RequestMapping("/collegeStudentSave")
     @ResponseBody
     public Map<String,String> collegeStudentSave(CollegeStudentReport collegeStudentReport){
-        CollegeStudentReport result = collegeStudentService.save(collegeStudentReport);
-        Map<String,String> map = new HashMap<>();
-        if(result != null){
-            map.put("code","200");
-            map.put("message","保存成功");
+        CollegeStudentReport college = collegeStudentService.save(collegeStudentReport);
+        Map<String,String> result = new HashMap<>();
+        if(college != null){
+            result.put("code","200");
+            result.put("message","保存成功");
         }else{
-            map.put("code","555");
-            map.put("message","保存失败");
+            result.put("code","555");
+            result.put("message","保存失败");
         }
-        return map;
+        return result;
     }
 }

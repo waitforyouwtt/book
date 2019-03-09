@@ -12,6 +12,18 @@
 <link rel="stylesheet" type="text/css" href="/h-ui.admin/css/style.css" />
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+
+<script type="text/javascript" src="/h-ui.admin/js/H-ui.admin.js"></script>
+
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
@@ -25,7 +37,7 @@
     <div class="cl pd-5 bg-1 bk-gray mt-20">
         <span class="l">
             <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-            <a href="javascript:;" onclick="college_student_add('添加大学生问卷','college_student_add.html','','510')" id="college_student_add" class="btn btn-primary radius">
+            <a href="javascript:;" onclick="college_student_add('添加大学生问卷','collegeStudentAdd','','510')" id="college_student_add" class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加大学生问卷</a>
         </span>
         <span class="r">共有数据：<strong>88</strong> 条</span> </div>
@@ -81,12 +93,12 @@
             pageData(datemin,datemax,username);
         });
 
-        $("#college_student_add").bind('click',function(){
-            window.location.href="collegeStudentAdd";
-        })
-
         pageData();
     });
+    function college_student_add(title,url,w,h){
+        layer_show(title,url,w,h);
+    }
+
     function pageData(datemin,datemax,username) {
         var url = "/collegeStudentList";
         $.ajax({

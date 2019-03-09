@@ -144,12 +144,12 @@
                 url : url,
                 dateType:'json',
                 data : $('#college-sutdent-add').serialize(),
-                success : function(data) {
-                    var code = result.rCode;
+                success : function(result) {
+                    var code = result.code;
                     var message = result.message;
                     if("200" == code){
-                        var url = "/findcollegeStudentList";
-                        window.location.href=url;
+                        layer.closeAll(); //关闭信息框
+                        window.parent.location.reload();
                     }else if("555" == code){
                         layer.msg(message);
                     }
