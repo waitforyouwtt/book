@@ -52,15 +52,15 @@ public class BookApplicationTests {
 		info.setBirthday(LocalDate.now());
 		info.setDeleteFlag(Constants.NO);
 		info.setAddress("江苏淮安");
-		userInfoService.save(info);
+		//userInfoService.save(info);
 	}
     @Test
 	public void queryUser(){
 		UserInfo userInfo = new UserInfo();
 		userInfo.setNickName("fyx");
 		userInfo.setPassword(SymmetricEncoder.AESEncode("123456","577521"));
-		UserInfo result = userInfoService.login(userInfo);
-		System.out.println("得到的结果："+result);
+		//UserInfo result = userInfoService.login(userInfo);
+		//System.out.println("得到的结果："+result);
 	}
 
 }
