@@ -68,9 +68,7 @@ public class IndexController {
     public Map<String,String> validImage(HttpServletRequest request, HttpSession session, UserInfo userInfo){
         String code = request.getParameter("code");
         Object verCode = session.getAttribute("verCode");
-
         Map<String,String> result = new HashMap<>(16);
-
         if (null == verCode) {
             request.setAttribute("errmsg", "验证码已失效，请重新输入");
             result.put("rCode","1000");
@@ -81,8 +79,6 @@ public class IndexController {
         LocalDateTime localDateTime = (LocalDateTime)session.getAttribute("codeTime");
         long past = localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
         long now = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-
-        String nickName = userInfo.getNickName();
         UserInfo getUserInfo = userInfoService.login(userInfo);
 
         if(verCodeStr == null || code == null || code.isEmpty() || !verCodeStr.equalsIgnoreCase(code)){
