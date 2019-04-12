@@ -1,7 +1,6 @@
 package com.book.controller;
 
 import com.book.entity.CollegeStudentReport;
-import com.book.entity.UserInfo;
 import com.book.service.CollegeStudentService;
 import com.book.service.UserInfoService;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,4 +62,5 @@ public class CollegeStudentController {
         }
         return result;
     }
+
 }
