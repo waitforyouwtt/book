@@ -36,3 +36,13 @@ server:
   port: 8080
 
 
+apache:
+  rocketmq:
+    consumer:
+      PushConsumer: PushConsumer
+  producer:
+    produceGroup: Producer
+  nameservAddr: localhost:9876
+logging:
+  pattern:
+    file: /logs/
