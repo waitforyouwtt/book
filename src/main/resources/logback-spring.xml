@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
 
-    <springProperty name="LOG_PATH" source="logging.path" defaultValue="/logs/" />
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- 彩色日志 -->

@@ -43,6 +43,3 @@ apache:
   producer:
     produceGroup: Producer
   nameservAddr: localhost:9876
-logging:
-  pattern:
-    file: /logs/

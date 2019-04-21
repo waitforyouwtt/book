@@ -4,6 +4,7 @@ import com.book.aop.CheckToken;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.OtherService;
+import com.book.service.UserInfoService;
 import com.book.utils.ConstantUtils;
 import com.book.utils.RedisToken;
 import io.swagger.annotations.ApiImplicitParam;
@@ -39,6 +40,9 @@ public class UserInfoController {
 
     @Autowired
     OtherService infoService;
+
+    @Autowired
+    UserInfoService userInfoService;
 
     @Autowired
     private RedisToken redisToken;
@@ -79,6 +83,29 @@ public class UserInfoController {
     public Map<String,String> validImage(HttpServletRequest request, HttpSession session, UserInfo userInfo){
         Map<String,String> result = new HashMap<>(16);
         //UserInfo userInfo1
+        return result;
+    }
+
+    @ApiOperation(value = "前往注册页面")
+    @RequestMapping(value = "/to-register",method = RequestMethod.GET)
+    public  String toRegister(Model model) {
+        model.addAttribute("staticResourceDomain", staticResourceDomain);
+        model.addAttribute("token",redisToken.getToken());
+        return "sendEmail";
+    }
+
+    @RequestMapping(value = "/register-with-email")
+    @ResponseBody
+    public Map<String,String> registerWithEmail(UserInfo userInfo,Model model){
+       Map<String,String> result = new HashMap<>( 16 );
+       UserInfo user = userInfoService.addUserInfo(userInfo);
+       if (user.getUserId() != null){
+           result.put("rCode","200");
+           result.put("message","成功");
+       }else{
+           result.put("rCode","1001");
+           result.put("message","失败");
+       }
         return result;
     }
 

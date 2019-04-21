@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.*;
 
 public class DateTest {
 
@@ -35,6 +35,31 @@ public class DateTest {
 		System.out.println("instant 转date："+DateUtils.fromInstant(instant));
 		System.out.println("在现有的时间上增加小时："+DateUtils.addHourse(2));
 		System.out.println("计算一周后的日期："+DateUtils.aWeekLater(2));
+
+	}
+	@Test
+	public void fd(){
+		/*String str = "a,b,c,d,ef,g";
+		StringTokenizer  tokener = new StringTokenizer(str,",");
+		String [] result = new String[tokener .countTokens()];
+		int i=0;
+		while(tokener.hasMoreElements()){
+			System.out.println(result[i++]=tokener.nextToken());
+		}
+
+		String [] fd = str.split( "," );
+		System.out.println(fd.toString());*/
+        /*List<String> vector = Arrays.asList( "hello","world","hello","zhangjie" );*/
+		/*Vector newVector = new Vector();
+		for (int i=0;i<vector.size();i++) {
+			Object obj = vector.get(i);
+			if(!newVector.contains(obj)){
+				newVector.add(obj);
+			}
+		}*/
+		List<String> vector = Arrays.asList( "hello","world","hello","zhangjie" );
+		Set<String> set = new HashSet<>( vector );
+		System.out.println("result is:"+set);
 
 	}
 

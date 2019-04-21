@@ -64,6 +64,11 @@ public class UserInfo implements Serializable{
     @Column(name = "address",columnDefinition="varchar(100) COMMENT '住址'")
     private String address;
 
+    @Pattern(regexp = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$",message = "邮箱格式错误")
+    @Basic
+    @Column(name = "email",columnDefinition="varchar(50) COMMENT '邮箱'")
+    private String email;
+
     @Basic
     @Column(name = "delete_flag",columnDefinition="varchar(4) COMMENT '删除标志'")
     private String deleteFlag;

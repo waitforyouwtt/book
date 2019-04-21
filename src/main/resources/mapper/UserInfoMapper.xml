@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.book.dao.UserInfoDao">
 
-  <insert id="addUserInfo" parameterType="com.book.entity.UserInfo">
-  	insert into user_info (user_name,address)
-    values (#{userName},#{address})
+  <insert id="addUserInfo" parameterType="com.book.entity.UserInfo" useGeneratedKeys="true">
+  	insert into user_info (user_name,address,email)
+    values (#{userName},#{address},#{email})
   </insert>
 
 

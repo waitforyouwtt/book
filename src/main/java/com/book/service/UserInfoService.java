@@ -17,7 +17,7 @@ public interface UserInfoService {
      */
     UserInfo login(UserInfo userInfo);
 
-    UserInfo save(UserInfo userInfo);
+    UserInfo addUserInfo(UserInfo userInfo);
 
     List<UserInfo> findAll();
 }

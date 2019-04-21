@@ -4,6 +4,7 @@ import com.book.dao.UserInfoDao;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.UserInfoService;
+import com.book.utils.SendEMail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public UserInfo save(UserInfo userInfo) {
-        return userInfoMapper.save(userInfo);
+    public UserInfo addUserInfo(UserInfo userInfo) {
+        String emailMsg = "邮箱发送testing";
+        SendEMail.sendMail(userInfo.getEmail(), emailMsg);
+
+        UserInfo u= new UserInfo(  );
+        u.setUserId(  "111");
+        return u;
     }
 
     @Override

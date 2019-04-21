@@ -34,6 +34,12 @@ public class CollegeStudentController {
         return modelAndView;
     }
 
+    @GetMapping("/sendEmail")
+    public ModelAndView sendEmail(){
+        ModelAndView mv = new ModelAndView( "sendEmail" );
+        return mv;
+    }
+
     @ApiOperation(value = "获取大学生调查问卷列表")
     @GetMapping("/collegeStudentList")
     @ResponseBody
