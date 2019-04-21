@@ -31,7 +31,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo addUserInfo(UserInfo userInfo) {
-        String emailMsg = "邮箱发送testing";
+        String emailMsg = "请点击<a href='http://127.0.0.1:8080/mvc/activeServlet?activeCode=\"+userInfo.getActiveCode()+\"'>激活邮箱</a>";
         SendEMail.sendMail(userInfo.getEmail(), emailMsg);
 
         UserInfo u= new UserInfo(  );
