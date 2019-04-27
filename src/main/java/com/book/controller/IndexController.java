@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,9 @@ public class IndexController {
 
     @Autowired
     UserInfoService userInfoService;
+
+    @Autowired
+    private StringRedisTemplate template;
 
     @RequestMapping("/")
     public String login(){
@@ -100,6 +104,8 @@ public class IndexController {
             //saveLoginLog(nickName,request);
             //验证成功，删除存储的验证码
             session.removeAttribute("verCode");
+
+            request.getSession();
             result.put("rCode","200");
             result.put("message","登陆成功");
             return result;
@@ -119,7 +125,4 @@ public class IndexController {
     public String toRegister(){
         return "register";
     }
-
-
-
 }

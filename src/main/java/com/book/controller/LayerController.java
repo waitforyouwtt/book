@@ -49,7 +49,7 @@ public class LayerController {
     @RequestMapping(value = "isValid",method = RequestMethod.GET)
     public String isSessionValid(HttpServletRequest request){
         //简化if-else表达式（其实很多地方可以简化的，这里为了方便新手朋友可以看得顺畅点，我尽量不简化）
-        return request.isRequestedSessionIdValid() ? "ok":"no";
+        return request.isRequestedSessionIdValid() ? "":"logout";
     }
 
     /**

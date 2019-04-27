@@ -5,11 +5,13 @@ import com.book.service.CollegeStudentService;
 import com.book.service.UserInfoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +45,12 @@ public class CollegeStudentController {
     @ApiOperation(value = "获取大学生调查问卷列表")
     @GetMapping("/collegeStudentList")
     @ResponseBody
-    public List<CollegeStudentReport> collegeStudentList(){
+    public List<CollegeStudentReport> collegeStudentList(HttpSession session){
+        String user = session.getAttribute("user").toString();
+        if (StringUtils.isBlank( user ))
+        {
+            System.out.println("wangbadan");
+        }
         CollegeStudentReport collegeStudentReport = new CollegeStudentReport();
         List<CollegeStudentReport> collegeStudentReports = collegeStudentService.findCollegeStudentList(collegeStudentReport);
         return collegeStudentReports;

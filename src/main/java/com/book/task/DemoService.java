@@ -1,5 +1,5 @@
 package com.book.task;
 
-public interface DemoService {
+/*public interface DemoService {
     void server(String s);
-}
+}*/

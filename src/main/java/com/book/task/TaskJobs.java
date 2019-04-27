@@ -12,11 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class TaskJobs implements Job {
 
-    @Autowired
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+
+    }
+
+
+
+   /* @Autowired
     private DemoService service;
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
 
         service.server("1");
-    }
+    }*/
 }
