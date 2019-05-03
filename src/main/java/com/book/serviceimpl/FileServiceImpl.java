@@ -2,8 +2,7 @@ package com.book.serviceimpl;
 
 import com.alibaba.fastjson.JSON;
 import com.book.controller.WDWUtil;
-import com.book.dao.ExcelDao;
-import com.book.dao.UserInfoDao;
+import com.book.dao.master.UserInfoMasterDao;
 import com.book.entity.Tbagent;
 import com.book.entity.UserInfo;
 import com.book.enums.ResultEnum;
@@ -41,10 +40,10 @@ import java.util.*;
 public class FileServiceImpl implements FileService {
 
     @Autowired
-    UserInfoDao userInfoDao;
+    UserInfoMasterDao userInfoDao;
 
-    @Autowired
-    private ExcelDao excelDao;
+  /*  @Autowired
+    private ExcelDao excelDao;*/
     @Autowired
     private UserInfoMapper userInfoMapper;
 
@@ -221,7 +220,7 @@ public class FileServiceImpl implements FileService {
             logger.info("没有重复的行");
         }
         //  批量插入 五秒完成
-        excelDao.batchInsert(tbagents);
+       // excelDao.batchInsert(tbagents);
         long endTime = System.currentTimeMillis();
         long totaltime = endTime - startTime;
         //  将近两万条数据 3秒解析完成

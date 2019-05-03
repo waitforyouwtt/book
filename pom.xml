@@ -225,6 +225,15 @@
 			<version>2.10.2</version>
 		</dependency>
 
+		<!-- 数据库连接池 start -->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.16</version>
+		</dependency>
+
+		<!-- 数据库连接池 end -->
 
 
 

@@ -1,6 +1,7 @@
 package com.book.controller;
 
 import com.book.entity.CollegeStudentReport;
+import com.book.entity.UserInfo;
 import com.book.service.CollegeStudentService;
 import com.book.service.UserInfoService;
 import io.swagger.annotations.ApiOperation;
@@ -75,6 +76,12 @@ public class CollegeStudentController {
             result.put("message","保存失败");
         }
         return result;
+    }
+
+   @GetMapping("/queryAll")
+    public String query(){
+        List<UserInfo> fd = userInfoService.findAll();
+      return "fd";
     }
 
 }

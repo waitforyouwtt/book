@@ -1,6 +1,8 @@
 package com.book;
 
 import com.book.common.Constants;
+import com.book.dao.master.UserInfoMasterDao;
+import com.book.dao.slaver.UserInfoSlaverDao;
 import com.book.entity.UserInfo;
 import com.book.service.UserInfoService;
 import com.book.utils.SnowflakeIdWorker;
@@ -9,12 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BookApplicationTests {
@@ -61,5 +63,17 @@ public class BookApplicationTests {
 		//UserInfo result = userInfoService.login(userInfo);
 		//System.out.println("得到的结果："+result);
 	}
+
+	@Autowired
+	private UserInfoMasterDao masterDao;
+	@Autowired
+	private UserInfoSlaverDao slaverUserDao;
+
+	@Test
+	public void savesdf(){
+		List<UserInfo> fd = masterDao.findAll();
+		System.out.println("fd:"+fd);
+	}
+
 
 }

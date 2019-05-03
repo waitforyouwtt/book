@@ -1,7 +1,6 @@
-package com.book.dao;
+package com.book.dao.master;
 
 import com.book.entity.UserInfo;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  * @Date: 2018/10/2 15:54
  * @Version 1.0
  */
-public interface UserInfoDao {
+public interface UserInfoMasterDao {
     /**
      * 批量导入数据
      * @param
@@ -20,4 +19,16 @@ public interface UserInfoDao {
     UserInfo addUserInfo(UserInfo userInfo);
 
     List<UserInfo> findAll();
+
+
+    int addUser(UserInfo userInfo);
+
+    int deleteUserById(Long id);
+
+    int updateUserById(UserInfo user);
+
+    UserInfo queryUserById(Long id);
+
+    List<UserInfo> queryUserList();
+
 }

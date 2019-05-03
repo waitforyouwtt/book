@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.dao.master.UserInfoMasterDao">
+
+    <resultMap id="BaseResultMap" type="com.book.entity.UserInfo" >
+        <result column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+  <insert id="addUserInfo" parameterType="com.book.entity.UserInfo" useGeneratedKeys="true">
+  	insert into user_info (user_name,address,email)
+    values (#{userName},#{address},#{email})
+  </insert>
+
+
+        <insert id="batchInsert" parameterType="java.util.List">
+        INSERT  INTO user_info(user_name,address)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userName},#{item.address})
+        </foreach>
+    </insert>
+
+<!--    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT  INTO agent(job_number,department,region,username,idcard,company_rankings,department_rankings,region_rankings,
+        distance_first_company,distance_first_department,distance_first_region)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.job_number},#{item.department},#{item.region},#{item.username},#{item.idcard},#{item.company_rankings},
+            #{item.department_rankings},#{item.region_rankings},#{item.distance_first_company},#{item.distance_first_department},#{item.distance_first_region})
+
+        </foreach>
+    </insert>-->
+
+    <select id="findAll" resultType="com.book.entity.UserInfo">
+        select user_name as userName from user_info
+    </select>
+
+ 
+</mapper>

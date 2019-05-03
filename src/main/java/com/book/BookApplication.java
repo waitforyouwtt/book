@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
 import javax.servlet.MultipartConfigElement;
 
 @ComponentScan(basePackages = "com")
-@MapperScan({"com.book.mapper","com.book.dao"})
+/*@MapperScan({"com.book.mapper","com.book.dao"})*/
 @ImportResource("quartz.xml")
 @SpringBootApplication
 @Configuration

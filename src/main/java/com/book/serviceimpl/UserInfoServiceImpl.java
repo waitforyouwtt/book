@@ -1,6 +1,6 @@
 package com.book.serviceimpl;
 
-import com.book.dao.UserInfoDao;
+import com.book.dao.master.UserInfoMasterDao;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
 import com.book.service.UserInfoService;
@@ -23,7 +23,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     UserInfoMapper userInfoMapper;
 
     @Autowired
-    UserInfoDao userInfoDao;
+    UserInfoMasterDao userInfoDao;
     @Override
     public UserInfo login(UserInfo userInfo) {
         return userInfoMapper.findByNickNameAndPassword(userInfo.getNickName(),userInfo.getPassword());
