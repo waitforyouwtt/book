@@ -1,11 +1,16 @@
 package com.book.serviceimpl;
 
+import com.book.dao.slaver.CollegeStudentSlaverDao;
 import com.book.entity.CollegeStudentReport;
+import com.book.jpaRepository.CollegeStudentReportMapper;
 import com.book.service.CollegeStudentService;
 
+import com.book.tools.StringOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -16,24 +21,22 @@ import java.util.List;
 @Service
 public class CollegeStudentServiceImpl implements CollegeStudentService {
 
-   /* @Autowired
-    CollegeStudentDao collegeStudentDao;
     @Autowired
-    CollegeStudentReportMapper collegeStudentReportMapper;*/
+    CollegeStudentSlaverDao collegeStudentSlaverDao;
+    @Autowired
+    CollegeStudentReportMapper collegeStudentReportMapper;
     @Override
     public List<CollegeStudentReport> findCollegeStudentList(CollegeStudentReport collegeStudentReport) {
-       /* List<CollegeStudentReport> collegeStudentReports =  collegeStudentDao.findCollegeStudentList(collegeStudentReport);
-        return collegeStudentReports;*/
-       return null;
+        List<CollegeStudentReport> collegeStudentReports =  collegeStudentSlaverDao.findCollegeStudentList(collegeStudentReport);
+        return collegeStudentReports;
     }
 
     @Override
     public CollegeStudentReport save(CollegeStudentReport collegeStudentReport){
-       /* collegeStudentReport.setUserId(String.valueOf(StringOperation.generateSixNumber()));
-        collegeStudentReport.setCreateTime(LocalDate.now());
+        collegeStudentReport.setUserId(String.valueOf( StringOperation.generateSixNumber()));
+        collegeStudentReport.setCreateTime( LocalDate.now());
         collegeStudentReport.setUpdateTime(LocalDate.now());
         CollegeStudentReport result = collegeStudentReportMapper.save(collegeStudentReport);
-        return result;*/
-       return null;
+        return result;
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.book.dao.CollegeStudentDao">
+<mapper namespace="com.book.dao.slaver.CollegeStudentSlaverDao">
 
     <select id="findCollegeStudentList" resultType="com.book.entity.CollegeStudentReport" parameterType="com.book.entity.CollegeStudentReport">
         select

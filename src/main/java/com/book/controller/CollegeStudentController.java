@@ -48,11 +48,6 @@ public class CollegeStudentController {
     @GetMapping("/collegeStudentList")
     @ResponseBody
     public List<CollegeStudentReport> collegeStudentList(HttpSession session){
-        String user = session.getAttribute("user").toString();
-        if (StringUtils.isBlank( user ))
-        {
-            System.out.println("wangbadan");
-        }
         CollegeStudentReport collegeStudentReport = new CollegeStudentReport();
         List<CollegeStudentReport> collegeStudentReports = collegeStudentService.findCollegeStudentList(collegeStudentReport);
         return collegeStudentReports;
