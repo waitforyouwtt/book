@@ -5,7 +5,7 @@ import com.alibaba.excel.metadata.Sheet;
 import com.book.entity.BatchParams;
 import com.book.entity.BatchReductionParams;
 import com.book.entity.UserInfo;
-import com.book.service.OtherService;
+import com.book.service.FileService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class FileReadController {
     private String staticResourceDomain;
 
     @Autowired
-    OtherService infoService;
+    FileService fileService;
 
     public static final char SEPARATOR = '|';
 
@@ -108,17 +108,22 @@ public class FileReadController {
     }
 
     @ApiOperation(value = "前往导入excel页面")
-    @RequestMapping(value = "/toExcel",method = RequestMethod.POST)
-    public  String toExcel(Model model) {
-        model.addAttribute("staticResourceDomain", staticResourceDomain);
-        return "excel";
+    @GetMapping(value = "/toExcel")
+    public  ModelAndView toExcel(Model model) {
+        return new ModelAndView("excel") ;
     }
+
+    /**
+     * Excel 批量导入
+     * @param file
+     * @return
+     */
     @ApiOperation(value = "导入excel 动作")
     @RequestMapping(value = "/importExcel",method = RequestMethod.POST)
-    public  String importExcel(@RequestParam("myfile")MultipartFile myFile) {
+    public  String importExcel(@RequestParam("file")MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView();
+        Integer nums = fileService.importExcel(file);
 
-        Integer nums = infoService.importExcel(myFile);
         modelAndView.addObject("msg","导入数成功");
         return "success";
     }

@@ -3,7 +3,7 @@ package com.book.controller;
 import com.book.aop.CheckToken;
 import com.book.entity.UserInfo;
 import com.book.jpaRepository.UserInfoMapper;
-import com.book.service.OtherService;
+import com.book.service.FileService;
 import com.book.service.UserInfoService;
 import com.book.utils.ConstantUtils;
 import com.book.utils.RedisToken;
@@ -39,7 +39,7 @@ public class UserInfoController {
     UserInfoMapper userInfoMapper ;
 
     @Autowired
-    OtherService infoService;
+    FileService infoService;
 
     @Autowired
     UserInfoService userInfoService;

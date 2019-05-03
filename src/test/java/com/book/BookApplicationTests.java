@@ -2,7 +2,6 @@ package com.book;
 
 import com.book.common.Constants;
 import com.book.entity.UserInfo;
-import com.book.service.OtherService;
 import com.book.service.UserInfoService;
 import com.book.utils.SnowflakeIdWorker;
 import com.book.utils.SymmetricEncoder;

@@ -10,7 +10,7 @@ import java.util.List;
  * @Date: 2018/10/2 15:54
  * @Version 1.0
  */
-public interface OtherService {
+public interface FileService {
     /**
      * 批量导入数据
      * @param tbagentList
@@ -19,5 +19,10 @@ public interface OtherService {
 
   /*  UserInfo addUserInfo(UserInfo userInfo);*/
 
-    Integer importExcel(MultipartFile myFile);
+    /**
+     * Excel批量导入
+     * @param file
+     * @return
+     */
+    Integer importExcel(MultipartFile file);
 }

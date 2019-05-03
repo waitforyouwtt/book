@@ -1,6 +1,7 @@
 package com.book.serviceimpl;
 
 import com.alibaba.fastjson.JSON;
+import com.book.controller.WDWUtil;
 import com.book.dao.ExcelDao;
 import com.book.dao.UserInfoDao;
 import com.book.entity.Tbagent;
@@ -8,7 +9,7 @@ import com.book.entity.UserInfo;
 import com.book.enums.ResultEnum;
 import com.book.exception.GlobalException;
 import com.book.jpaRepository.UserInfoMapper;
-import com.book.service.OtherService;
+import com.book.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ import java.util.*;
  * @Version 1.0
  */
 @Service
-public class OtherServiceImpl implements OtherService {
+public class FileServiceImpl implements FileService {
 
     @Autowired
     UserInfoDao userInfoDao;
@@ -57,12 +58,12 @@ public class OtherServiceImpl implements OtherService {
         userInfoDao.batchInsert(userInfoList);
     }
 
-    private final static String XLS = "xls";
-    public static final String XLSX = "xlsx";
-    private final static Logger logger = LoggerFactory.getLogger(OtherServiceImpl.class);
+    public final static String XLS = "xls";
+    public final static String XLSX = "xlsx";
+    private final static Logger logger = LoggerFactory.getLogger( FileServiceImpl.class);
 
     @Override
-    public Integer importExcel(MultipartFile myFile) {
+    public Integer importExcel(MultipartFile file) {
         //1.  使用HSSFWorkbook 打开或者创建 “Excel对象”
         //2.  用HSSFWorkbook返回对象或者创建sheet对象
         //3.  用sheet返回行对象，用行对象得到Cell对象
@@ -71,29 +72,40 @@ public class OtherServiceImpl implements OtherService {
         List<Tbagent> tbagents = new ArrayList<>();
         Workbook workbook = null;
         //  获取文件名
-        String fileName = myFile.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
         logger.info("【fileName】{}", fileName);
-        if (fileName.endsWith(XLS)) {
+/*        if (fileName.endsWith(XLS)) {
             try {
                 //  2003版本
-                workbook = new HSSFWorkbook(myFile.getInputStream());
+                workbook = new HSSFWorkbook(file.getInputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (fileName.endsWith(XLSX)) {
             try {
                 //  2007版本
-                workbook = new XSSFWorkbook(myFile.getInputStream());
+                workbook = new XSSFWorkbook(file.getInputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             // 文件不是Excel文件
             throw new GlobalException(ResultEnum.FILE_IS_NOT_EXCEL);
+        }*/
+        try {
+            if (WDWUtil.isExcel2003( fileName )) {
+                workbook = new HSSFWorkbook( file.getInputStream() );
+            } else if (WDWUtil.isExcel2007( fileName )) {
+                workbook = new XSSFWorkbook( file.getInputStream() );
+            } else {
+                throw new GlobalException( ResultEnum.FILE_IS_NOT_EXCEL );
+            }
+        } catch (IOException e) {
+           e.printStackTrace();
         }
         Sheet sheet = workbook.getSheet("sheet1");
         int rows = sheet.getLastRowNum();
-        logger.info("【rows】{}", rows);
+        logger.info("【数据总行数rows】{}", rows);
         if (rows == 0) {
             // 数据为空 请填写数据
             throw new GlobalException(ResultEnum.DATA_IS_NULL);
@@ -208,8 +220,6 @@ public class OtherServiceImpl implements OtherService {
         }else{
             logger.info("没有重复的行");
         }
-
-
         //  批量插入 五秒完成
         excelDao.batchInsert(tbagents);
         long endTime = System.currentTimeMillis();
