@@ -44,6 +44,12 @@ public class CollegeStudentController {
         return mv;
     }
 
+    @GetMapping("/Rotate")
+    public ModelAndView Rotate(){
+        ModelAndView mv = new ModelAndView( "360Rotate" );
+        return mv;
+    }
+
     @ApiOperation(value = "获取大学生调查问卷列表")
     @GetMapping("/collegeStudentList")
     @ResponseBody
