@@ -1,9 +1,11 @@
 package com.book.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.book.entity.CollegeStudentReport;
 import com.book.entity.UserInfo;
 import com.book.service.CollegeStudentService;
 import com.book.service.UserInfoService;
+import com.book.view.CollegeStudentReportView;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -53,9 +55,9 @@ public class CollegeStudentController {
     @ApiOperation(value = "获取大学生调查问卷列表")
     @GetMapping("/collegeStudentList")
     @ResponseBody
-    public List<CollegeStudentReport> collegeStudentList(HttpSession session){
+    public List<CollegeStudentReportView> collegeStudentList(HttpSession session){
         CollegeStudentReport collegeStudentReport = new CollegeStudentReport();
-        List<CollegeStudentReport> collegeStudentReports = collegeStudentService.findCollegeStudentList(collegeStudentReport);
+        List<CollegeStudentReportView> collegeStudentReports = collegeStudentService.findCollegeStudentList(collegeStudentReport);
         return collegeStudentReports;
     }
 
@@ -67,6 +69,7 @@ public class CollegeStudentController {
     @RequestMapping("/collegeStudentSave")
     @ResponseBody
     public Map<String,String> collegeStudentSave(CollegeStudentReport collegeStudentReport){
+        log.info("添加的参数的是：{}", JSON.toJSON(collegeStudentReport));
         CollegeStudentReport college = collegeStudentService.save(collegeStudentReport);
         Map<String,String> result = new HashMap<>();
         if(college != null){

@@ -1,5 +1,7 @@
 package com.book.entity;
 
+import com.book.enums.LeisureActivitiesEnum;
+import com.book.enums.ServicePopulationEnum;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -50,6 +52,9 @@ public class CollegeStudentReport  implements Serializable{
     @Basic
     @Column(name = "leisure_activities",columnDefinition="varchar(10) COMMENT '业余活动'")
     private String leisureActivities;
+   /* @Enumerated(EnumType.STRING)
+    private LeisureActivitiesEnum leisureActivities;*/
+
     @Basic
     @Column(name = "work_resource",columnDefinition="varchar(10) COMMENT '兼职途径'")
     private String workResource;
@@ -68,6 +73,9 @@ public class CollegeStudentReport  implements Serializable{
     @Basic
     @Column(name = "service_population",columnDefinition="varchar(10) COMMENT '服务人群：01 小学生，02 中学生，03高中生，04外国人，05无所谓'")
     private String servicePopulation;
+   /* @Enumerated(EnumType.STRING)
+    private ServicePopulationEnum servicePopulationEnum;*/
+
     @Basic
     @Column(name = "service_cus_gender",columnDefinition="varchar(10) COMMENT '乐意服务人群性别：01 男，02 女，03，无所谓'")
     private String serviceCusGender;

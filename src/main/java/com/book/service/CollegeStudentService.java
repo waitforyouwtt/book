@@ -1,6 +1,7 @@
 package com.book.service;
 
 import com.book.entity.CollegeStudentReport;
+import com.book.view.CollegeStudentReportView;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface CollegeStudentService {
 
-    List<CollegeStudentReport> findCollegeStudentList(CollegeStudentReport collegeStudentReport);
+    List<CollegeStudentReportView> findCollegeStudentList(CollegeStudentReport collegeStudentReport);
 
     CollegeStudentReport save(CollegeStudentReport collegeStudentReport);
 }

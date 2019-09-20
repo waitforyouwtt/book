@@ -204,14 +204,23 @@ public class FileController {
     }
 
     @PostMapping("/upload0")
-    public List<UserInfo> search(@RequestParam("file") MultipartFile file){
+    @ResponseBody
+    public String  search(@RequestParam("file") MultipartFile file,HttpServletRequest request){
         // 获取文件名
-        String fileName = file.getOriginalFilename();
+        String fileName = request.getRequestURI()+"/"+file.getOriginalFilename();
         logger.info("上传的文件名为：" + fileName);
         // 获取文件的后缀名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         logger.info("上传的后缀名为：" + suffixName);
-      return null;
+      return fileName;
+    }
+
+    @RequestMapping(value = "upload5")
+    @ResponseBody
+    public String upload5(@RequestParam("test") MultipartFile file) {
+
+        String fileName = "";
+        return "fd";
     }
 
 
